@@ -2,7 +2,6 @@ package com.example.cafeplatform.ui.auth
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -17,15 +16,27 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root) // ✅ gunakan XML, bukan setContent { }
+        setContentView(binding.root)
 
+        setupListeners()
+        observeViewModel()
+    }
+
+    private fun setupListeners() {
         binding.btnLogin.setOnClickListener {
-            val email = binding.inputEmail.text.toString()
-            val password = binding.inputPassword.text.toString()
+            val email = binding.inputEmail.text.toString().trim()
+            val password = binding.inputPassword.text.toString().trim()
+
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Email dan Password wajib diisi", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
             viewModel.login(email, password)
         }
+    }
 
+    private fun observeViewModel() {
         viewModel.loginSuccess.observe(this) { success ->
             if (success) {
                 Toast.makeText(this, "Login Berhasil", Toast.LENGTH_SHORT).show()
@@ -35,5 +46,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Login Gagal", Toast.LENGTH_SHORT).show()
             }
         }
+
+        // Optional: Observe loading/error state jika ViewModel punya LiveData lain
     }
 }
