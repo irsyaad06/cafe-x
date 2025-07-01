@@ -1,16 +1,19 @@
 package com.example.cafeplatform
-
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import android.os.Handler
+import android.os.Looper
+import com.example.cafeplatform.ui.auth.LoginActivity
 
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }, 2000)
     }
 }
-
