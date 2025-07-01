@@ -1,10 +1,8 @@
 package com.example.cafeplatform.data.model
 
-data class Cafe(
-    val nama: String = "",
-    val alamat: String = "",
-    val rating: Int = 0,
-    val link_gmaps: String = "",
-    val foto: String? = null,
-    val owner_uid: String = ""
+data class User(
+    val email: String = "",
+    val role: String = "",      // "admin" atau "cafe"
+    val status: String = "",    // "aktif", "menunggu", "ditolak", dst
+    val nama: String = ""       // Nama pengguna / cafe owner
 )

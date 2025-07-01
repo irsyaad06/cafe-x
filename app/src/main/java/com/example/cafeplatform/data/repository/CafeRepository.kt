@@ -17,4 +17,19 @@ class CafeRepository {
             emptyList()
         }
     }
+
+    fun getCafeByOwnerUid(uid: String, onResult: (Cafe?) -> Unit) {
+        FirebaseFirestore.getInstance()
+            .collection("cafe")
+            .whereEqualTo("owner_uid", uid)
+            .get()
+            .addOnSuccessListener { result ->
+                val cafe = result.documents.firstOrNull()?.toObject(Cafe::class.java)
+                onResult(cafe)
+            }
+            .addOnFailureListener {
+                onResult(null)
+            }
+    }
+
 }
