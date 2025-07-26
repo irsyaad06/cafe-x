@@ -8,17 +8,17 @@
     tools:context=".SplashActivity">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageViewLogo"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_margin="16dp"
-        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
         android:src="@drawable/cafexlogonobg"
-        android:contentDescription="@string/todo"
+        android:contentDescription="@string/app_name"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
